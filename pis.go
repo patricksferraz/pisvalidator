@@ -23,47 +23,47 @@ func ValidatePis(pis string) bool {
 
 	position1, err := strconv.Atoi(splitPis[0])
 	if err != nil {
-		return true
+		return false
 	}
 	position2, err := strconv.Atoi(splitPis[1])
 	if err != nil {
-		return true
+		return false
 	}
 	position3, err := strconv.Atoi(splitPis[2])
 	if err != nil {
-		return true
+		return false
 	}
 	position4, err := strconv.Atoi(splitPis[3])
 	if err != nil {
-		return true
+		return false
 	}
 	position5, err := strconv.Atoi(splitPis[4])
 	if err != nil {
-		return true
+		return false
 	}
 	position6, err := strconv.Atoi(splitPis[5])
 	if err != nil {
-		return true
+		return false
 	}
 	position7, err := strconv.Atoi(splitPis[6])
 	if err != nil {
-		return true
+		return false
 	}
 	position8, err := strconv.Atoi(splitPis[7])
 	if err != nil {
-		return true
+		return false
 	}
 	position9, err := strconv.Atoi(splitPis[8])
 	if err != nil {
-		return true
+		return false
 	}
 	position10, err := strconv.Atoi(splitPis[9])
 	if err != nil {
-		return true
+		return false
 	}
 	position11, err := strconv.Atoi(splitPis[10])
 	if err != nil {
-		return true
+		return false
 	}
 
 	x1 := 3 * position1
@@ -82,11 +82,7 @@ func ValidatePis(pis string) bool {
 	digit := 11 - (sum % 11)
 	digit = verifyDigit(digit)
 
-	if digit != position11 {
-		return false
-	}
-
-	return true
+	return digit == position11
 }
 
 // verifyDigit check the digit of the math and if it is greater than 9 change it to 0
