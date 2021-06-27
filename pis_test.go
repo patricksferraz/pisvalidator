@@ -15,7 +15,7 @@ func TestValidate(t *testing.T) {
 		},
 		{
 			pis:     "477.11617.27-5",
-			wantErr: false,
+			wantErr: true,
 		},
 		{
 			pis:     "475.12417.27-5",
@@ -37,15 +37,15 @@ func TestValidate(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.pis, func(t *testing.T) {
-			if _, err := ValidatePis(tt.pis); (err != nil) != tt.wantErr {
-				t.Errorf("Error on validate = %v, wantErr %v, pis %v", err, tt.wantErr, tt.pis)
+			if ok := ValidatePis(tt.pis); (ok == false) != tt.wantErr {
+				t.Errorf("Error on validate = %v, wantErr %v, pis %v", ok, tt.wantErr, tt.pis)
 			}
 		})
 	}
 }
 
 func TestClean1(t *testing.T) {
-	s := clean("111.222.333-99")
+	s := Clean("111.222.333-99")
 
 	if s != "11122233399" {
 		t.Errorf("Invalid result: %s", s)
@@ -53,7 +53,7 @@ func TestClean1(t *testing.T) {
 }
 
 func TestClean2(t *testing.T) {
-	s := clean("10.963.268/0001-82")
+	s := Clean("10.963.268/0001-82")
 
 	if s != "10963268000182" {
 		t.Errorf("Invalid result: %s", s)
