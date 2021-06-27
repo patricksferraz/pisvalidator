@@ -1,72 +1,69 @@
 package pisvalidatior
 
 import (
-	"fmt"
 	"strconv"
 	"strings"
 )
 
 // Clean can be used for cleaning formatted documents.
-func clean(s string) string {
+func Clean(s string) string {
 	s = strings.Replace(s, ".", "", -1)
 	s = strings.Replace(s, "-", "", -1)
 	s = strings.Replace(s, "/", "", -1)
 	return s
 }
 
-// Validate the pis number.
-func ValidatePis(pis string) (string, error) {
-	// Clean pis to validate it
-	pis = clean(pis)
+// ValidatePis validate the pis number.
+func ValidatePis(pis string) bool {
 	splitPis := strings.Split(pis, "")
 	length := len(splitPis)
 	if length != 11 {
-		return pis, fmt.Errorf("Invalid size of pis")
+		return false
 	}
 
 	position1, err := strconv.Atoi(splitPis[0])
 	if err != nil {
-		return pis, err
+		return true
 	}
 	position2, err := strconv.Atoi(splitPis[1])
 	if err != nil {
-		return pis, err
+		return true
 	}
 	position3, err := strconv.Atoi(splitPis[2])
 	if err != nil {
-		return pis, err
+		return true
 	}
 	position4, err := strconv.Atoi(splitPis[3])
 	if err != nil {
-		return pis, err
+		return true
 	}
 	position5, err := strconv.Atoi(splitPis[4])
 	if err != nil {
-		return pis, err
+		return true
 	}
 	position6, err := strconv.Atoi(splitPis[5])
 	if err != nil {
-		return pis, err
+		return true
 	}
 	position7, err := strconv.Atoi(splitPis[6])
 	if err != nil {
-		return pis, err
+		return true
 	}
 	position8, err := strconv.Atoi(splitPis[7])
 	if err != nil {
-		return pis, err
+		return true
 	}
 	position9, err := strconv.Atoi(splitPis[8])
 	if err != nil {
-		return pis, err
+		return true
 	}
 	position10, err := strconv.Atoi(splitPis[9])
 	if err != nil {
-		return pis, err
+		return true
 	}
 	position11, err := strconv.Atoi(splitPis[10])
 	if err != nil {
-		return pis, err
+		return true
 	}
 
 	x1 := 3 * position1
@@ -86,13 +83,13 @@ func ValidatePis(pis string) (string, error) {
 	digit = verifyDigit(digit)
 
 	if digit != position11 {
-		return pis, fmt.Errorf("Invalid pis")
+		return false
 	}
 
-	return pis, nil
+	return true
 }
 
-// Check the digit of the math and if it is greater than 9 change it to 0
+// verifyDigit check the digit of the math and if it is greater than 9 change it to 0
 func verifyDigit(digit int) int {
 	if digit > 9 {
 		return 0
