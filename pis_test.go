@@ -37,8 +37,8 @@ func TestValidate(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.pis, func(t *testing.T) {
-			if ok := ValidatePis(tt.pis); (ok == false) != tt.wantErr {
-				t.Errorf("Error on validate = %v, wantErr %v, pis %v", ok, tt.wantErr, tt.pis)
+			if valid := ValidatePis(tt.pis); (valid == false) != tt.wantErr {
+				t.Errorf("Error on validate = %v, wantErr %v, pis %v", valid, tt.wantErr, tt.pis)
 			}
 		})
 	}
